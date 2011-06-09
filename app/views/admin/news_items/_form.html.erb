@@ -27,6 +27,11 @@
   </div>
 
   <div class='field'>
+    <%= f.label :type %>
+    <%= f.text_field :item_type, :class => "larger widest" %>
+  </div>
+
+  <div class='field'>
     <%= f.label :content %>
     <%= f.text_area :content, :rows => "20", :class => "wymeditor widest" %>
   </div>

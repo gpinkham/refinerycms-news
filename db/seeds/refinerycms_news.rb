@@ -21,4 +21,30 @@ if defined?(::Page)
       page.parts.create(:title => default_page_part, :body => nil)
     end
   end
+  unless Page.where(:menu_match => "^/articles.*$").any?
+    page = Page.create(
+      :title => "Articles",
+      :link_url => "/articles",
+      :deletable => false,
+      :position => ((Page.maximum(:position, :conditions => {:parent_id => nil}) || -1)+1),
+      :menu_match => "^/articles.*$"
+    )
+
+    Page.default_parts.each do |default_page_part|
+      page.parts.create(:title => default_page_part, :body => nil)
+    end
+  end
+  unless Page.where(:menu_match => "^/recipes.*$").any?
+    page = Page.create(
+      :title => "Recipes",
+      :link_url => "/recipes",
+      :deletable => false,
+      :position => ((Page.maximum(:position, :conditions => {:parent_id => nil}) || -1)+1),
+      :menu_match => "^/recipes.*$"
+    )
+
+    Page.default_parts.each do |default_page_part|
+      page.parts.create(:title => default_page_part, :body => nil)
+    end
+  end
 end
